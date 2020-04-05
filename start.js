@@ -10,9 +10,10 @@ const client = new Discord.Client();
 
 client.once('ready', async () => {
     console.log('DJ Discord at the wheels of steel');
+
     const channel = client.channels.cache.get(process.env.CHANNEL_ID);
     const connection = await channel.join();
-    const mention_tag = `<@!${client.user.id}>`;
+    const mention_tag = new RegExp(`<@[!&#]?${client.user.id}>`);
 
     function play(url) {
         connection.play(url, {volume: false, bitrate: 64, plp: 10, fec: true });
@@ -21,7 +22,7 @@ client.once('ready', async () => {
     client.on('message', async message => {
         if (message.author.bot) return;
 
-        if (!message.content.startsWith(mention_tag) && !(message.channel instanceof Discord.DMChannel)) {
+        if (!mention_tag.test(message.content) && !(message.channel instanceof Discord.DMChannel)) {
             return;
         }
 
