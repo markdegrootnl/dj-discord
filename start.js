@@ -26,16 +26,24 @@ client.once('ready', async () => {
             return;
         }
 
-        const msg = message.content.replace(mention_tag, '').trim();
+        let msg = message.content.replace(mention_tag, '').trim();
         console.log('< ' + msg);
 
-        switch(msg) {
+        switch(msg.toLowerCase()) {
             case 'stop':
+            case 'stahp':
+            case 'staahp':
+            case 'staaahp':
+            case 'staaaahp':
                 message.channel.send('Stopping');
                 if (connection.dispatcher) {
                     connection.dispatcher.end();
                 }
                 return;
+            case 'rr':
+            case 'dj bakvis':
+                msg = 'https://www.youtube.com/watch?v=TzXXHVhGXTQ';
+                break;
             case '?':
             case 'help':
                 message.channel.send('You can send me any stream or youtube URL or the name of a Tunein.FM radio station.');
