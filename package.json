@@ -8,7 +8,7 @@
     "axios": "^0.21.1",
     "discord.js": "^12.1.1",
     "dotenv": "^8.2.0",
-    "lodash": "^4.17.19",
+    "lodash": "^4.17.21",
     "node-tunein-radio": "^0.3.4",
     "ytdl-core": "^2.0.1"
   },
